@@ -406,12 +406,14 @@ pip install -r requirements.txt
 
 | Package | Version | Purpose |
 |---|---|---|
-| `groq` | 1.1.2 | Groq API client — Whisper ASR + LLaMA LLM |
-| `sounddevice` | 0.5.5 | Microphone audio capture |
-| `scipy` | 1.17.1 | WAV file writing |
-| `numpy` | 2.4.4 | Audio array processing |
-| `pyttsx3` | 2.99 | Offline text-to-speech synthesis |
-| `python-dotenv` | 1.2.2 | `.env` file loading for API key |
+| `groq` | >=1.0.0 | Groq API client — Whisper ASR + LLaMA LLM |
+| `sounddevice` | >=0.5.0 | Microphone audio capture |
+| `scipy` | >=1.15.0 | WAV file writing |
+| `numpy` | >=2.0.0 | Audio array processing |
+| `pyttsx3` | >=2.90 | Offline text-to-speech synthesis |
+| `python-dotenv` | >=1.0.0 | `.env` file loading for API key |
+
+> 💻 **Cross-Platform Support**: `requirements.txt` includes environment markers (`; sys_platform == 'win32'`). Windows-only dependencies like `pywin32` will automatically be skipped on Linux/macOS, ensuring a clean installation on any OS.
 
 ### Notable Exclusions
 
