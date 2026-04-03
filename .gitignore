@@ -16,6 +16,7 @@ __pycache__/
 input.wav
 response.wav
 response.mp3
+!demo_sample.wav
 *.wav
 *.mp3
 

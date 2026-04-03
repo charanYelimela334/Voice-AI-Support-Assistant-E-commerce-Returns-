@@ -3,6 +3,7 @@
 A **production-style Voice AI pipeline** for e-commerce customer support. It listens to your voice, understands your intent, retrieves relevant data, generates a natural language response using an LLM, and speaks the answer back to you.
 
 > 📋 **[Edge Case Testing →](edge_cases.md)** — Intent detection stress tests, known limitations, and proposed semantic fix.
+> 🔊 **[Download Sample Audio Response →](demo_sample.wav)** — Hear the assistant's voice for an order tracking query.
 
 ---
 
