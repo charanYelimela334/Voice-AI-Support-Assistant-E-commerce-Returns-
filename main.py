@@ -22,7 +22,12 @@ def main():
     parser.add_argument(
         "--text",
         type=str,
-        help="Skip microphone recording and use this text directly as input"
+        help="Skip recording and use this text directly as input"
+    )
+    parser.add_argument(
+        "--audio",
+        type=str,
+        help="Path to an existing audio file to transcribe (e.g. --audio query.wav)"
     )
     args = parser.parse_args()
 
@@ -30,23 +35,27 @@ def main():
     assistant = VoiceAssistant()
     tts = TTSService()
 
-    # 🎤 Step 1: Get input (mic or text)
+    # 🎤 Step 1: Get input — audio file, mic recording, or direct text
     if args.text:
         text = args.text
         print(f"\n💬 Using text input: {text}")
+
+    elif args.audio:
+        print(f"\n🎧 Transcribing audio file: {args.audio}")
+        text = asr.transcribe(args.audio)
+        print("\n📝 Transcribed:", text)
+
     else:
         recorder = AudioRecorder()
         audio_file = recorder.record(duration=5)
-
-        # 🧠 Step 2: Speech → Text
         text = asr.transcribe(audio_file)
         print("\n📝 Transcribed:", text)
 
-    # 🤖 Step 3: LLM Response
+    # 🤖 Step 2: LLM Response
     response = assistant.handle_query(text)
     print("\n🤖 Response:", response)
 
-    # 🔊 Step 4: Text → Speech
+    # 🔊 Step 3: Text → Speech
     audio_output = tts.speak(response)
     print(f"\n🔈 Audio saved as: {audio_output}")
 

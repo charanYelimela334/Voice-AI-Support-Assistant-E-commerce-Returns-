@@ -25,6 +25,8 @@ class VoiceAssistant:
             return "return_policy"
         elif "refund" in text:
             return "refund_policy"
+        elif any(w in text for w in ["hour", "open", "support", "available", "timing"]):
+            return "support_hours"
         else:
             return "unknown"
 
@@ -77,7 +79,10 @@ class VoiceAssistant:
         elif intent == "refund_policy":
             context = self.policies["refunds"]
 
+        elif intent == "support_hours":
+            context = {"support_hours": self.policies["support_hours"]}
+
         else:
-            context = {"note": "No relevant data found. Tell the user you can help with orders, returns, and refunds."}
+            context = {"note": "No relevant data found. Tell the user you can help with orders, returns, refunds, and support hours."}
 
         return self.llm.generate_response(text, context)
