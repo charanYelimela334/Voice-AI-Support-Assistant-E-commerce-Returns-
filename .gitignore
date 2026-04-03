@@ -9,12 +9,15 @@ __pycache__/
 *.pyo
 *.pyd
 
-# Environment variables
+# Environment variables — NEVER commit this
 .env
 
-# Audio files (generated at runtime)
+# Generated audio files
 input.wav
+response.wav
 response.mp3
+*.wav
+*.mp3
 
 # IDE
 .vscode/
