@@ -396,18 +396,28 @@ parser.add_argument("--audio", type=str, help="Path to audio file to transcribe"
 
 ## 📦 Dependencies
 
-A complete version-pinned `requirements.txt` is included. Key packages:
+All dependencies are version-pinned in `requirements.txt` for reproducibility. Install with:
 
-```
-groq==1.1.2
-sounddevice==0.5.5
-scipy==1.17.1
-numpy==2.4.4
-python-dotenv==1.2.2
-pyttsx3==2.99
+```bash
+pip install -r requirements.txt
 ```
 
-Install: `pip install -r requirements.txt`
+### Direct Dependencies
+
+| Package | Version | Purpose |
+|---|---|---|
+| `groq` | 1.1.2 | Groq API client — Whisper ASR + LLaMA LLM |
+| `sounddevice` | 0.5.5 | Microphone audio capture |
+| `scipy` | 1.17.1 | WAV file writing |
+| `numpy` | 2.4.4 | Audio array processing |
+| `pyttsx3` | 2.99 | Offline text-to-speech synthesis |
+| `python-dotenv` | 1.2.2 | `.env` file loading for API key |
+
+### Notable Exclusions
+
+`openai-whisper`, `torch`, `llvmlite`, `numba` — these are **not required**. The project started with local Whisper but switched to **Groq cloud ASR** (`whisper-large-v3` via API). This eliminates a ~4GB PyTorch dependency and significantly reduces install time. The local Whisper service (`app/asr/whisper_service.py`) is kept as an offline fallback reference only.
+
+> **Fresh install time**: ~30 seconds (no PyTorch, no CUDA, no model download).
 
 ---
 
