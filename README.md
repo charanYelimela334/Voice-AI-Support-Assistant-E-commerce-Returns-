@@ -2,6 +2,9 @@
 
 A **production-style Voice AI pipeline** for e-commerce customer support. It listens to your voice, understands your intent, retrieves relevant data, generates a natural language response using an LLM, and speaks the answer back to you.
 
+> 📋 **[Edge Case Testing →](edge_cases.md)** — Intent detection stress tests, known limitations, and proposed semantic fix.
+
+
 ---
 
 ## 🚀 Project Agenda
@@ -296,6 +299,9 @@ response = self.client.chat.completions.create(
 - **Static dataset**: `orders.json` and `policies.json` are treated as the single source of truth. No external database or live order system is queried.
 
 - **English only**: The ASR model is configured for English. Multi-language support is out of scope for this version.
+
+- **LLaMA 3.1 8B is sufficient for this task**: The LLM is not doing open-ended reasoning — it is formatting structured, pre-retrieved data into a natural sentence. This is a low-complexity generation task that 8B models handle reliably. A larger model (70B, GPT-4) would add cost and latency with no meaningful improvement for these 3 intents.
+
 
 ---
 
