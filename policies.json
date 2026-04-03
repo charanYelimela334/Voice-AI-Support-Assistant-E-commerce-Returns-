@@ -1,0 +1,14 @@
+{
+  "returns": {
+    "allowed": true,
+    "window_days": 7,
+    "conditions": [
+      "Item must be unused",
+      "Original packaging required"
+    ]
+  },
+  "refunds": {
+    "method": "original payment method",
+    "processing_time_days": 5
+  }
+}
